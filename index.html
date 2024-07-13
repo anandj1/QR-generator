@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <title>Document</title>
+    <style>
+        .imgstyle{
+            min-width: 50%;
+            margin: 40px auto ;
+            padding: 10px;
+        
+            
+            border: 2px solid rgb(101, 15, 222);
+            border-radius: 10%;
+
+        }
+    </style>
+</head>
+<body>
+
+    <div>
+        <div class=" fixed w-[700px] h-[700px] border rounded-md shadow-md  m-auto inset-0  bg-yellow-200">
+            <h1 class=" font-nunito font-bold uppercase text-3xl text-center text-cyan-500 mt-3"> Generate A QR Code!!</h1>
+
+            <div class=" flex justify-center items-center gap-y-10 mt-[40px] flex-col">
+                <input class="w-[80%] font-semibold font-nunito text-center border rounded-md py-3 bg-cyan-200 text-blue-700 " id="value" type=" text" placeholder="Input content to generate qr code">
+                <button class=" hover:bg-red-700 font-nunito border text-white text-lg font-semibold rounded-lg py-4 bg-red-500 w-[30%]" id="main">Generate!</button>
+            </div>
+            <h1 class="dynamic text-blue-900 text-center text-2xl font-semibold mt-3"></h1>
+            <div class="" id="qrc">
+               
+                
+                
+            </div>
+
+        </div>
+    </div>
+
+
+    
+</body>
+<script type="module">
+    import QRCode from 'qrcode';
+    let mains = document.querySelector("#main")
+    
+    mains.addEventListener('click',(e)=>{
+        e.preventDefault()
+        let data = document.querySelector("#value").value
+        console.log(data)
+        let dynamicText = document.querySelector(".dynamic").textContent = "Your QR Code is Here!!";
+        
+       
+
+        document.querySelector("#qrc").innerHTML = ""
+        QRCode.toDataURL(data)
+        
+        .then(url=>{
+            let qrimage = document.createElement("img")
+            qrimage.src= url;
+            console.log(qrimage)
+            
+            // console.log(url)
+
+            qrimage.classList.add('imgstyle')
+            // qrimage.style.width = "100px"
+            document.querySelector("#qrc").appendChild(qrimage)
+            
+
+            
+
+        })
+        .catch(err=>{
+            console.log("ERROR")
+            alert(err)
+        })
+
+
+
+    })
+    
+     
+</script>
+</html>
