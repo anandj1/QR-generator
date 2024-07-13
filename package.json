@@ -6,6 +6,6 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "vite": "^2.4.4"
+    "vite": "^2.9.18"
   }
 }
